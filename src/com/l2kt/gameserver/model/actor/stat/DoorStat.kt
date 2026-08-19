@@ -27,6 +27,8 @@ class DoorStat(activeChar: Door) : CreatureStat(activeChar) {
             SevenSigns.CabalType.DAWN -> defense *= 1.2
 
             SevenSigns.CabalType.DUSK -> defense *= 0.3
+
+            else -> {}
         }
 
         return defense.toInt()
@@ -39,6 +41,8 @@ class DoorStat(activeChar: Door) : CreatureStat(activeChar) {
             SevenSigns.CabalType.DAWN -> defense *= 1.2
 
             SevenSigns.CabalType.DUSK -> defense *= 0.3
+
+            else -> {}
         }
 
         return defense.toInt()

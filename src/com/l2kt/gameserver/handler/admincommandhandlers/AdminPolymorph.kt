@@ -26,7 +26,7 @@ class AdminPolymorph : IAdminCommandHandler {
 
                 var info: WorldObject.PolyType = WorldObject.PolyType.NPC
                 if (st.countTokens() > 1)
-                    info = WorldObject.PolyType.valueOf(st.nextToken().toUpperCase())
+                    info = WorldObject.PolyType.valueOf(st.nextToken().uppercase())
 
                 val npcId = Integer.parseInt(st.nextToken())
 

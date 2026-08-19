@@ -192,6 +192,8 @@ open class SignsPriest(objectId: Int, template: NpcTemplate) : Folk(objectId, te
                         SevenSigns.SealType.GNOSIS -> player.sendPacket(SystemMessageId.FIGHT_FOR_GNOSIS)
 
                         SevenSigns.SealType.STRIFE -> player.sendPacket(SystemMessageId.FIGHT_FOR_STRIFE)
+
+                        else -> {}
                     }
 
                     showChatWindow(player, 4, cabal.shortName, false)
@@ -774,6 +776,8 @@ open class SignsPriest(objectId: Int, template: NpcTemplate) : Folk(objectId, te
                         player.sendPacket(ActionFailed.STATIC_PACKET)
                         return
                     }
+
+                    else -> {}
                 }
                 filename += "mammblack_1.htm"
             }

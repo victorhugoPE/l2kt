@@ -211,6 +211,8 @@ object CastleManorManager : IXmlReader {
                 _nextModeChange!!.set(Calendar.HOUR_OF_DAY, Config.ALT_MANOR_REFRESH_TIME)
                 _nextModeChange!!.set(Calendar.MINUTE, Config.ALT_MANOR_REFRESH_MIN)
             }
+
+            else -> {}
         }
 
         // Schedule mode change
@@ -318,6 +320,8 @@ object CastleManorManager : IXmlReader {
                         castle.addToTreasuryNoTax(-manorCost)
                 }
             }
+
+            else -> {}
         }
         scheduleModeChange()
 

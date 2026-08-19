@@ -22,7 +22,6 @@ import com.l2kt.gameserver.network.gameserverpackets.ServerStatus
 import com.l2kt.gameserver.network.serverpackets.ServerClose
 import com.l2kt.gameserver.network.serverpackets.SystemMessage
 import com.l2kt.gameserver.taskmanager.ItemsOnGroundTaskManager
-import kotlin.reflect.jvm.jvmName
 
 class Shutdown : Thread {
 
@@ -220,7 +219,7 @@ class Shutdown : Thread {
     }
 
     companion object {
-        private val LOGGER = CLogger(Shutdown::class.jvmName)
+        private val LOGGER = CLogger(Shutdown::class.java.name)
 
         private var counterInstance: Shutdown? = null
 

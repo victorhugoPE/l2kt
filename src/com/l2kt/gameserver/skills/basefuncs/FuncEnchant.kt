@@ -37,6 +37,8 @@ class FuncEnchant(pStat: Stats, pOrder: Int, owner: Any, lambda: Lambda) : Func(
                 A, B, C -> env.addValue((3 * enchant + 6 * overenchant).toDouble())
 
                 D -> env.addValue((2 * enchant + 4 * overenchant).toDouble())
+
+                else -> {}
             }
             return
         }
@@ -82,6 +84,8 @@ class FuncEnchant(pStat: Stats, pOrder: Int, owner: Any, lambda: Lambda) : Func(
 
                     else -> env.addValue((2 * enchant + 4 * overenchant).toDouble())
                 }
+
+                else -> {}
             }
         }
     }

@@ -31,6 +31,7 @@ class Q625_TheFinestIngredients_Part2 : Quest(625, "The Finest Ingredients - Par
                 startQuestTimer("check", CHECK_INTERVAL.toLong(), null, null, true)
             }
             RaidBossSpawnManager.StatusEnum.DEAD -> startQuestTimer("check", CHECK_INTERVAL.toLong(), null, null, true)
+            else -> {}
         }
     }
 

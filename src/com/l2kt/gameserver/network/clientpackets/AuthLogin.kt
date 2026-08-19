@@ -11,7 +11,7 @@ class AuthLogin : L2GameClientPacket() {
     private var _loginKey2: Int = 0
 
     override fun readImpl() {
-        _loginName = readS().toLowerCase()
+        _loginName = readS().lowercase()
         _playKey2 = readD()
         _playKey1 = readD()
         _loginKey1 = readD()

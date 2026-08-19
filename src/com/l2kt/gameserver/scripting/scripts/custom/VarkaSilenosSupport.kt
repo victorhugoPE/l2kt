@@ -192,6 +192,8 @@ class VarkaSilenosSupport : Quest(-1, "custom") {
                         }
                     }
                 }
+
+                else -> {}
             }
         }
 

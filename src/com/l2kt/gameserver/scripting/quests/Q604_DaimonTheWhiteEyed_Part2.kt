@@ -31,6 +31,7 @@ class Q604_DaimonTheWhiteEyed_Part2 : Quest(604, "Daimon The White-Eyed - Part 2
                 startQuestTimer("check", CHECK_INTERVAL.toLong(), null, null, true)
             }
             RaidBossSpawnManager.StatusEnum.DEAD -> startQuestTimer("check", CHECK_INTERVAL.toLong(), null, null, true)
+            else -> {}
         }
     }
 

@@ -494,6 +494,8 @@ object Formulas {
                 POLE -> stat = Stats.POLE_WPN_VULN
 
                 SWORD -> stat = Stats.SWORD_WPN_VULN
+
+                else -> {}
             }
         }
 
@@ -552,6 +554,8 @@ object Formulas {
                             100
                     damage *= multiplier
                 }
+
+                else -> {}
             }
         }
 
@@ -1022,6 +1026,8 @@ object Formulas {
                     target.calcStat(Stats.DEBUFF_VULN, multiplier, target, null)
 
             L2SkillType.CANCEL -> multiplier = target.calcStat(Stats.CANCEL_VULN, multiplier, target, null)
+
+            else -> {}
         }
 
         // Return a multiplier (exemple with resist shock : 1 + (-0,4 stun vuln) = 0,6%
@@ -1036,6 +1042,8 @@ object Formulas {
 
             L2SkillType.SLEEP, L2SkillType.DEBUFF, L2SkillType.WEAKNESS, L2SkillType.ERASE, L2SkillType.ROOT, L2SkillType.MUTE, L2SkillType.FEAR, L2SkillType.BETRAY, L2SkillType.CONFUSION, L2SkillType.AGGREDUCE_CHAR, L2SkillType.PARALYZE -> multiplier = 2 -
                     SQRT_MEN_BONUS[target.stat.men]
+
+            else -> {}
         }
 
         return Math.max(0.0, multiplier)
@@ -1367,6 +1375,8 @@ object Formulas {
                 if (venganceChance > Rnd[100])
                     reflect = (reflect.toInt() or SKILL_REFLECT_VENGEANCE.toInt()).toByte()
             }
+
+            else -> {}
         }
 
         val reflectChance = target.calcStat(
@@ -1408,6 +1418,8 @@ object Formulas {
 
             L2SkillType.CONFUSION, L2SkillType.ROOT, L2SkillType.STUN, L2SkillType.MUTE, L2SkillType.FEAR, L2SkillType.DEBUFF, L2SkillType.PARALYZE, L2SkillType.SLEEP, L2SkillType.AGGDEBUFF, L2SkillType.AGGREDUCE_CHAR -> if (Rnd[1000] == 1)
                 return true
+
+            else -> {}
         }
         return false
     }

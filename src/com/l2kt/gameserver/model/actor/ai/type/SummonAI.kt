@@ -99,6 +99,8 @@ internal class SummonAI(summon: Summon) : PlayableAI(summon) {
                 CtrlIntention.CAST -> thinkCast()
                 CtrlIntention.PICK_UP -> thinkPickUp()
                 CtrlIntention.INTERACT -> thinkInteract()
+
+                else -> {}
             }
         } finally {
             _thinking = false
@@ -171,6 +173,8 @@ internal class SummonAI(summon: Summon) : PlayableAI(summon) {
         when (desire.intention) {
             CtrlIntention.ACTIVE, CtrlIntention.FOLLOW, CtrlIntention.IDLE, CtrlIntention.MOVE_TO, CtrlIntention.PICK_UP -> (actor as Summon).followStatus =
                 _startFollow
+
+            else -> {}
         }
     }
 

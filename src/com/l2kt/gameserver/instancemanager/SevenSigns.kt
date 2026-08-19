@@ -352,6 +352,8 @@ object SevenSigns {
                         for (dawnCrest in _crestofdawnspawns!!.values)
                             AutoSpawnManager.setSpawnActive(dawnCrest, false)
                     }
+
+                    else -> {}
                 }
             } else {
                 // Unspawn merchant of mammon, Lilith, Anakim.
@@ -437,6 +439,7 @@ object SevenSigns {
         when (cabal) {
             SevenSigns.CabalType.DAWN -> return Math.round((_dawnStoneScore / if (totalStoneScore.toFloat() == 0f) 1 else totalStoneScore.toInt()).toFloat() * 500) + _dawnFestivalScore
             SevenSigns.CabalType.DUSK -> return Math.round((_duskStoneScore / if (totalStoneScore.toFloat() == 0f) 1 else totalStoneScore.toInt()).toFloat() * 500) + _duskFestivalScore
+            else -> {}
         }
 
         return 0
@@ -446,6 +449,7 @@ object SevenSigns {
         when (cabal) {
             SevenSigns.CabalType.DAWN -> return _dawnStoneScore
             SevenSigns.CabalType.DUSK -> return _duskStoneScore
+            else -> {}
         }
 
         return 0.0
@@ -455,6 +459,7 @@ object SevenSigns {
         when (cabal) {
             SevenSigns.CabalType.DAWN -> return _dawnFestivalScore
             SevenSigns.CabalType.DUSK -> return _duskFestivalScore
+            else -> {}
         }
 
         return 0
@@ -469,6 +474,7 @@ object SevenSigns {
             SevenSigns.CabalType.DAWN -> return _dawnScores[seal] ?: 0
 
             SevenSigns.CabalType.DUSK -> return _duskScores[seal] ?: 0
+            else -> {}
         }
 
         return 0
@@ -751,6 +757,8 @@ object SevenSigns {
             SevenSigns.CabalType.DAWN -> _dawnStoneScore += contribScore.toDouble()
 
             SevenSigns.CabalType.DUSK -> _duskStoneScore += contribScore.toDouble()
+
+            else -> {}
         }
 
         return contribScore
@@ -832,6 +840,8 @@ object SevenSigns {
 
                     SevenSigns.CabalType.DUSK -> if (duskPercent >= 35)
                         newSealOwner = CabalType.DUSK
+
+                    else -> {}
                 }
 
                 SevenSigns.CabalType.DAWN -> when (cabalHighestScore) {
@@ -845,6 +855,8 @@ object SevenSigns {
                         newSealOwner = CabalType.DUSK
                     else if (dawnPercent >= 10)
                         newSealOwner = CabalType.DAWN
+
+                    else -> {}
                 }
 
                 SevenSigns.CabalType.DUSK -> when (cabalHighestScore) {
@@ -858,7 +870,11 @@ object SevenSigns {
 
                     SevenSigns.CabalType.DUSK -> if (duskPercent >= 10)
                         newSealOwner = CabalType.DUSK
+
+                    else -> {}
                 }
+
+                else -> {}
             }
 
             _sealOwners[seal] = newSealOwner
@@ -883,6 +899,8 @@ object SevenSigns {
 
                     CastleManager.validateTaxes(newSealOwner)
                 }
+
+                else -> {}
             }
         }
     }
@@ -953,6 +971,8 @@ object SevenSigns {
                         SevenSigns.CabalType.DAWN -> SystemMessage.getSystemMessage(SystemMessageId.DAWN_WON).toAllOnlinePlayers()
 
                         SevenSigns.CabalType.DUSK -> SystemMessage.getSystemMessage(SystemMessageId.DUSK_WON).toAllOnlinePlayers()
+
+                        else -> {}
                     }
 
                     _previousWinner = winningCabal

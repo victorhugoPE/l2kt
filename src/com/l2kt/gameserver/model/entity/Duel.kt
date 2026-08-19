@@ -520,6 +520,8 @@ class Duel(
 
             Duel.DuelResult.CANCELED, Duel.DuelResult.TIMEOUT -> sm =
                 SystemMessage.getSystemMessage(SystemMessageId.THE_DUEL_HAS_ENDED_IN_A_TIE)
+
+            else -> {}
         }
 
         broadcastToTeam1(sm)

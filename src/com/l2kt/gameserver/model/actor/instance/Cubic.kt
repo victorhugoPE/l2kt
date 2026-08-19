@@ -459,6 +459,8 @@ class Cubic(
 
                     skill.getEffects(activeCubic, obj, null)
                 }
+
+                else -> {}
             }
         }
     }

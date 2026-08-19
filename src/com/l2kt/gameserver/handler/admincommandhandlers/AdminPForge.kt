@@ -34,7 +34,7 @@ class AdminPForge : IAdminCommandHandler {
                 var format = st.nextToken()
                 var broadcast = false
 
-                if (format.toLowerCase() == "broadcast") {
+                if (format.lowercase() == "broadcast") {
                     format = st.nextToken()
                     broadcast = true
                 }
@@ -42,37 +42,37 @@ class AdminPForge : IAdminCommandHandler {
                 val sp = AdminForgePacket()
                 for (i in 0 until format.length) {
                     var `val` = st.nextToken()
-                    if (`val`.toLowerCase() == "\$objid") {
+                    if (`val`.lowercase() == "\$objid") {
                         `val` = activeChar.objectId.toString()
-                    } else if (`val`.toLowerCase() == "\$tobjid") {
+                    } else if (`val`.lowercase() == "\$tobjid") {
                         `val` = activeChar.target.objectId.toString()
-                    } else if (`val`.toLowerCase() == "\$bobjid") {
+                    } else if (`val`.lowercase() == "\$bobjid") {
                         if (activeChar.boat != null) {
                             `val` = activeChar.boat.objectId.toString()
                         }
-                    } else if (`val`.toLowerCase() == "\$clanid") {
+                    } else if (`val`.lowercase() == "\$clanid") {
                         `val` = activeChar.objectId.toString()
-                    } else if (`val`.toLowerCase() == "\$allyid") {
+                    } else if (`val`.lowercase() == "\$allyid") {
                         `val` = activeChar.allyId.toString()
-                    } else if (`val`.toLowerCase() == "\$tclanid") {
+                    } else if (`val`.lowercase() == "\$tclanid") {
                         `val` = (activeChar.target as Player).objectId.toString()
-                    } else if (`val`.toLowerCase() == "\$tallyid") {
+                    } else if (`val`.lowercase() == "\$tallyid") {
                         `val` = (activeChar.target as Player).allyId.toString()
-                    } else if (`val`.toLowerCase() == "\$x") {
+                    } else if (`val`.lowercase() == "\$x") {
                         `val` = activeChar.x.toString()
-                    } else if (`val`.toLowerCase() == "\$y") {
+                    } else if (`val`.lowercase() == "\$y") {
                         `val` = activeChar.y.toString()
-                    } else if (`val`.toLowerCase() == "\$z") {
+                    } else if (`val`.lowercase() == "\$z") {
                         `val` = activeChar.z.toString()
-                    } else if (`val`.toLowerCase() == "\$heading") {
+                    } else if (`val`.lowercase() == "\$heading") {
                         `val` = activeChar.heading.toString()
-                    } else if (`val`.toLowerCase() == "\$tx") {
+                    } else if (`val`.lowercase() == "\$tx") {
                         `val` = activeChar.target.x.toString()
-                    } else if (`val`.toLowerCase() == "\$ty") {
+                    } else if (`val`.lowercase() == "\$ty") {
                         `val` = activeChar.target.y.toString()
-                    } else if (`val`.toLowerCase() == "\$tz") {
+                    } else if (`val`.lowercase() == "\$tz") {
                         `val` = activeChar.target.z.toString()
-                    } else if (`val`.toLowerCase() == "\$theading") {
+                    } else if (`val`.lowercase() == "\$theading") {
                         `val` = (activeChar.target as Player).heading.toString()
                     }
 

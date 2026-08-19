@@ -44,7 +44,7 @@ class RequestAuthLogin : L2LoginClientPacket() {
         }
 
         try {
-            user = String(decrypted, 0x5E, 14).trim{ it <= ' ' }.toLowerCase()
+            user = String(decrypted, 0x5E, 14).trim{ it <= ' ' }.lowercase()
             password = String(decrypted, 0x6C, 16).trim{ it <= ' ' }
             oneTimePassword = decrypted[0x7c].toInt()
             oneTimePassword = oneTimePassword or (decrypted[0x7d].toInt() shl 8)

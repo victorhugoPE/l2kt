@@ -30,6 +30,8 @@ class HealPercent : ISkillHandler {
             L2SkillType.HEAL_PERCENT -> hp = true
 
             L2SkillType.MANAHEAL_PERCENT -> mp = true
+
+            else -> {}
         }
 
         var su: StatusUpdate? = null

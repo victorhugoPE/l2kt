@@ -40,6 +40,8 @@ class GatekeeperSpirit : Quest(-1, "teleports") {
                 SevenSigns.CabalType.DAWN -> return "dawn.htm"
 
                 SevenSigns.CabalType.DUSK -> return "dusk.htm"
+
+                else -> {}
             }
         }
 

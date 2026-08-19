@@ -22,7 +22,7 @@ class Armor
     private var _type: ArmorType? = null
 
     init {
-        _type = ArmorType.valueOf(set.getString("armor_type", "none")!!.toUpperCase())
+        _type = ArmorType.valueOf(set.getString("armor_type", "none")!!.uppercase())
 
         val _bodyPart = bodyPart
         if (_bodyPart == Item.SLOT_NECK || _bodyPart == Item.SLOT_FACE || _bodyPart == Item.SLOT_HAIR || _bodyPart == Item.SLOT_HAIRALL || _bodyPart and Item.SLOT_L_EAR != 0 || _bodyPart and Item.SLOT_L_FINGER != 0 || _bodyPart and Item.SLOT_BACK != 0) {

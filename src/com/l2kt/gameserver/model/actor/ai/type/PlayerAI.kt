@@ -273,6 +273,8 @@ internal class PlayerAI(player: Player) : PlayableAI(player) {
                 CtrlIntention.CAST -> thinkCast()
                 CtrlIntention.PICK_UP -> thinkPickUp()
                 CtrlIntention.INTERACT -> thinkInteract()
+
+                else -> {}
             }
         } finally {
             // Stop thinking action

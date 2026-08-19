@@ -105,7 +105,7 @@ class GameServerThread(private val _connection: Socket) : Thread() {
                     else -> {
                         LOGGER.warn(
                             "Unknown opcode ({}) from gameserver, closing connection.",
-                            Integer.toHexString(packetType).toUpperCase()
+                            Integer.toHexString(packetType).uppercase()
                         )
                         forceClose(LoginServerFail.NOT_AUTHED)
                     }

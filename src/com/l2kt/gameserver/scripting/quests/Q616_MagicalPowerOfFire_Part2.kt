@@ -31,6 +31,7 @@ class Q616_MagicalPowerOfFire_Part2 : Quest(616, "Magical Power of Fire - Part 2
                 startQuestTimer("check", CHECK_INTERVAL.toLong(), null, null, true)
             }
             RaidBossSpawnManager.StatusEnum.DEAD -> startQuestTimer("check", CHECK_INTERVAL.toLong(), null, null, true)
+            else -> {}
         }
     }
 

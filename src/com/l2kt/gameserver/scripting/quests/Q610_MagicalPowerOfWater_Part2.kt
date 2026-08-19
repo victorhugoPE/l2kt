@@ -31,6 +31,7 @@ class Q610_MagicalPowerOfWater_Part2 : Quest(610, "Magical Power of Water - Part
                 startQuestTimer("check", CHECK_INTERVAL.toLong(), null, null, true)
             }
             RaidBossSpawnManager.StatusEnum.DEAD -> startQuestTimer("check", CHECK_INTERVAL.toLong(), null, null, true)
+            else -> {}
         }
     }
 

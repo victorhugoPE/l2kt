@@ -110,6 +110,8 @@ class TamedBeast(
                             sitCastAndFollow(skill, _owner!!)
                             return
                         }
+
+                        else -> {}
                     }
                 }
             }
@@ -131,6 +133,8 @@ class TamedBeast(
                             sitCastAndFollow(skill, _owner!!)
                             return
                         }
+
+                        else -> {}
                     }
                 }
             }

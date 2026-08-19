@@ -94,6 +94,7 @@ class CharEffectList(// Owner of this list
                 if (e != null && e.showIcon && !e.skill.is7Signs) {
                     when (e.skill.skillType) {
                         L2SkillType.BUFF, L2SkillType.COMBATPOINTHEAL, L2SkillType.REFLECT, L2SkillType.HEAL_PERCENT, L2SkillType.MANAHEAL_PERCENT -> buffCount++
+                        else -> {}
                     }
                 }
             }
@@ -577,6 +578,7 @@ class CharEffectList(// Owner of this list
                             if (effectsToRemove < 0)
                                 break // break for()
                         }
+                        else -> {}
                     }
                 }
             }

@@ -265,7 +265,7 @@ class AdminEditChar : IAdminCommandHandler {
                 val st = StringTokenizer(command, " ")
                 st.nextToken()
 
-                sex = Sex.valueOf(st.nextToken().toUpperCase())
+                sex = Sex.valueOf(st.nextToken().uppercase())
             } catch (e: Exception) {
             }
 
@@ -702,7 +702,7 @@ class AdminEditChar : IAdminCommandHandler {
             // First use of sb, add player info into new Table row
             for (player in World.players) {
                 val name = player.name
-                if (name.toLowerCase().contains(characterToFind.toLowerCase())) {
+                if (name.lowercase().contains(characterToFind.lowercase())) {
                     charactersFound++
                     StringUtil.append(
                         sb,

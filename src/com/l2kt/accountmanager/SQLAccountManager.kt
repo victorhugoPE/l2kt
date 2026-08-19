@@ -35,7 +35,7 @@ object SQLAccountManager {
                 if (mode == "1" || mode == "2" || mode == "3") {
                     while (username.trim{ it <= ' ' }.isEmpty()) {
                         print("Username: ")
-                        username = it.next().toLowerCase()
+                        username = it.next().lowercase()
                     }
 
                     if (mode == "1") {

@@ -17,7 +17,7 @@ class LoginPacketHandler : IPacketHandler<LoginClient> {
         val opcode = buf.get().toInt() and 0xFF
 
         var packet: ReceivablePacket<LoginClient>? = null
-        val state = client.state
+        val state = client.state ?: return null
 
         when (state) {
             LoginClient.LoginClientState.CONNECTED -> if (opcode == 0x07)
@@ -35,6 +35,8 @@ class LoginPacketHandler : IPacketHandler<LoginClient> {
                 0x02 -> packet = RequestServerLogin()
                 else -> debugOpcode(opcode, state)
             }
+
+            else -> debugOpcode(opcode, state)
         }
         return packet
     }

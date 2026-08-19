@@ -24,7 +24,7 @@ open class Triangle
     protected val _CAx: Int
     protected val _CAy: Int
 
-    override val size: Int
+    override var size: Int = 0
 
     override val area: Double
         get() = size.toDouble()

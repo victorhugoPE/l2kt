@@ -14,7 +14,7 @@ data class AccountInfo(var login: String, private val _passHash: String, val acc
         if (_passHash.isEmpty())
             throw IllegalArgumentException("passHash")
 
-        login = login.toLowerCase()
+        login = login.lowercase()
     }
 
     fun checkPassHash(passHash: String): Boolean {

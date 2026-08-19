@@ -282,6 +282,8 @@ class Disablers : ISkillHandler {
                     }// All others negate type skills
                     skill.getEffects(activeChar, target, Env(shld, ss, sps, bsps))
                 }
+
+                else -> {}
             }
         }
 

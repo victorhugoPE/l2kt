@@ -146,7 +146,7 @@ class AdminCursedWeapons : IAdminCommandHandler {
                 else {
                     parameter = parameter.replace('_', ' ')
                     for (cwp in CursedWeaponManager.cursedWeapons) {
-                        if (cwp.name.toLowerCase().contains(parameter.toLowerCase())) {
+                        if (cwp.name.lowercase().contains(parameter.lowercase())) {
                             id = cwp.itemId
                             break
                         }

@@ -28,13 +28,15 @@ class EtcItem
     val reuseDelay: Int
 
     init {
-        _type = EtcItemType.valueOf(set.getString("etcitem_type", "none")!!.toUpperCase())
+        _type = EtcItemType.valueOf(set.getString("etcitem_type", "none")!!.uppercase())
 
         // l2j custom - L2EtcItemType.SHOT
         when (defaultAction) {
             ActionType.soulshot, ActionType.summon_soulshot, ActionType.summon_spiritshot, ActionType.spiritshot -> {
                 _type = EtcItemType.SHOT
             }
+
+            else -> {}
         }
 
         type1 = Item.TYPE1_ITEM_QUESTITEM_ADENA

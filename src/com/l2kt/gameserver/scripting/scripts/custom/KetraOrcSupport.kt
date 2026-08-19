@@ -193,6 +193,8 @@ class KetraOrcSupport : Quest(-1, "custom") {
                         }
                     }
                 }
+
+                else -> {}
             }
         }
 

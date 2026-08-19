@@ -187,6 +187,8 @@ open class CreatureStat(open val activeChar: Creature) {
             when (stat) {
                 Stats.MAX_HP, Stats.MAX_MP, Stats.MAX_CP, Stats.MAGIC_DEFENCE, Stats.POWER_DEFENCE, Stats.POWER_ATTACK, Stats.MAGIC_ATTACK, Stats.POWER_ATTACK_SPEED, Stats.MAGIC_ATTACK_SPEED, Stats.SHIELD_DEFENCE, Stats.STAT_CON, Stats.STAT_DEX, Stats.STAT_INT, Stats.STAT_MEN, Stats.STAT_STR, Stats.STAT_WIT -> env.value =
                     1.0
+
+                else -> {}
             }
         }
         return env.value

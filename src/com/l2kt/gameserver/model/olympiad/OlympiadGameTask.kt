@@ -162,6 +162,8 @@ class OlympiadGameTask(val zone: OlympiadStadiumZone) : Runnable {
                     game = null
                     return
                 }
+
+                else -> {}
             }
             ThreadPool.schedule(this, (delay * 1000).toLong())
         } catch (e: Exception) {
@@ -172,6 +174,8 @@ class OlympiadGameTask(val zone: OlympiadStadiumZone) : Runnable {
                     game = null
                     return
                 }
+
+                else -> {}
             }
 
             _log.log(Level.WARNING, "Exception in " + _state + ", trying to port players back: " + e.message, e)

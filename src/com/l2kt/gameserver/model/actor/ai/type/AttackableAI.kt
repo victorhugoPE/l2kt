@@ -1165,6 +1165,7 @@ internal open class AttackableAI(attackable: Attackable) : CreatureAI(attackable
                 CtrlIntention.ACTIVE -> thinkActive()
                 CtrlIntention.ATTACK -> thinkAttack()
                 CtrlIntention.CAST -> thinkCast()
+                else -> {}
             }
         } finally {
             // Stop thinking action.

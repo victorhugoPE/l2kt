@@ -35,7 +35,7 @@ class L2SkillSiegeFlag(set: StatsSet) : L2Skill(set) {
         npcDat.set("name", player!!.clan.name)
         npcDat.set("usingServerSideName", true)
 
-        npcDat.set("hp", if (_isAdvanced) 100000 else 50000)
+        npcDat.set("hp", (if (_isAdvanced) 100000 else 50000) as Int)
         npcDat.set("mp", 0.toInt())
 
         npcDat.set("radius", 10.toInt())

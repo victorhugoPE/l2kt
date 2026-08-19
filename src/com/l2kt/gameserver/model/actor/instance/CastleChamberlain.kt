@@ -95,6 +95,8 @@ open class CastleChamberlain(objectId: Int, template: NpcTemplate) : Merchant(ob
                     SevenSigns.CabalType.DAWN -> html.replace("%ss_avarice%", "Lords of Dawn")
 
                     SevenSigns.CabalType.DUSK -> html.replace("%ss_avarice%", "Revolutionaries of Dusk")
+
+                    else -> {}
                 }
 
                 when (SevenSigns.getSealOwner(SealType.GNOSIS)) {
@@ -103,6 +105,8 @@ open class CastleChamberlain(objectId: Int, template: NpcTemplate) : Merchant(ob
                     SevenSigns.CabalType.DAWN -> html.replace("%ss_gnosis%", "Lords of Dawn")
 
                     SevenSigns.CabalType.DUSK -> html.replace("%ss_gnosis%", "Revolutionaries of Dusk")
+
+                    else -> {}
                 }
 
                 when (SevenSigns.getSealOwner(SealType.STRIFE)) {
@@ -111,6 +115,8 @@ open class CastleChamberlain(objectId: Int, template: NpcTemplate) : Merchant(ob
                     SevenSigns.CabalType.DAWN -> html.replace("%ss_strife%", "Lords of Dawn")
 
                     SevenSigns.CabalType.DUSK -> html.replace("%ss_strife%", "Revolutionaries of Dusk")
+
+                    else -> {}
                 }
                 player.sendPacket(html)
             }
@@ -596,6 +602,8 @@ open class CastleChamberlain(objectId: Int, template: NpcTemplate) : Merchant(ob
                 SevenSigns.CabalType.DUSK -> price *= 3
 
                 SevenSigns.CabalType.DAWN -> price = (price * 0.8).roundToInt()
+
+                else -> {}
             }
 
             return price
@@ -617,12 +625,16 @@ open class CastleChamberlain(objectId: Int, template: NpcTemplate) : Merchant(ob
                 3 -> price = 5000000
 
                 4 -> price = 6000000
+
+                else -> {}
             }
 
             when (SevenSigns.getSealOwner(SealType.STRIFE)) {
                 SevenSigns.CabalType.DUSK -> price *= 3
 
                 SevenSigns.CabalType.DAWN -> price = (price * 0.8).roundToInt()
+
+                else -> {}
             }
 
             return price

@@ -107,7 +107,7 @@ class Weapon
         get() = if (_enchant4Skill == null) null else _enchant4Skill!!.skill
 
     init {
-        itemType = WeaponType.valueOf(set.getString("weapon_type", "none")!!.toUpperCase())
+        itemType = WeaponType.valueOf(set.getString("weapon_type", "none")!!.uppercase())
         type1 = Item.TYPE1_WEAPON_RING_EARRING_NECKLACE
         type2 = Item.TYPE2_WEAPON
         soulShotCount = set.getInteger("soulshots", 0)

@@ -126,6 +126,7 @@ abstract class AbstractAI protected constructor(val actor: Creature) {
             CtrlEvent.EVT_DEAD -> onEvtDead()
             CtrlEvent.EVT_FAKE_DEATH -> onEvtFakeDeath()
             CtrlEvent.EVT_FINISH_CASTING -> onEvtFinishCasting()
+            else -> {}
         }
 
         // Do next action.

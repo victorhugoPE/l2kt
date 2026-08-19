@@ -267,6 +267,8 @@ private constructor(
             SORCERER, SPELLSINGER, SPELLHOWLER ->
                 // remove restricted classes for wizards
                 _subclasses!!.removeAll(EnumSet.of(SORCERER, SPELLSINGER, SPELLHOWLER))
+
+            else -> {}
         }
     }
 

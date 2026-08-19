@@ -261,6 +261,8 @@ class Party(leader: Player, target: Player, val lootRule: LootRule) : AbstractGr
                 looter = getNextLooter(itemId, target)
 
             Party.LootRule.ITEM_ORDER_SPOIL -> looter = getNextLooter(itemId, target)
+
+            else -> {}
         }
 
         return looter ?: player

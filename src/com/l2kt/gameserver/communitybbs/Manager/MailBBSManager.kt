@@ -72,7 +72,7 @@ object MailBBSManager : BaseBBSManager() {
                 showMailList(
                     player,
                     page,
-                    MailType.valueOf(action.toUpperCase()),
+                    MailType.valueOf(action.uppercase()),
                     sType,
                     search
                 )
@@ -115,7 +115,7 @@ object MailBBSManager : BaseBBSManager() {
             showMailList(
                 player,
                 1,
-                MailType.valueOf(st.nextToken().toUpperCase()),
+                MailType.valueOf(st.nextToken().uppercase()),
                 ar4,
                 ar5
             )
@@ -158,7 +158,7 @@ object MailBBSManager : BaseBBSManager() {
                                 mail.mailId = rs.getInt("letterId")
                                 mail.senderId = rs.getInt("senderId")
                                 mail.location =
-                                        MailType.valueOf(rs.getString("location").toUpperCase())
+                                        MailType.valueOf(rs.getString("location").uppercase())
                                 mail.recipientNames = rs.getString("recipientNames")
                                 mail.subject = rs.getString("subject")
                                 mail.message = rs.getString("message")
@@ -196,11 +196,11 @@ object MailBBSManager : BaseBBSManager() {
             val byTitle = sType.equals("title", ignoreCase = true)
 
             for (mail in getPlayerMails(player.objectId)) {
-                if (byTitle && mail.subject!!.toLowerCase().contains(search.toLowerCase()))
+                if (byTitle && mail.subject!!.lowercase().contains(search.lowercase()))
                     mails.add(mail)
                 else if (!byTitle) {
                     val writer = getPlayerName(mail.senderId)
-                    if (writer.toLowerCase().contains(search.toLowerCase()))
+                    if (writer.lowercase().contains(search.lowercase()))
                         mails.add(mail)
                 }
             }
@@ -233,7 +233,7 @@ object MailBBSManager : BaseBBSManager() {
             Integer.toString(getMailCount(player.objectId, MailType.TEMPARCHIVE, "", ""))
         )
         content = content.replace("%type%", type.description)
-        content = content.replace("%htype%", type.toString().toLowerCase())
+        content = content.replace("%htype%", type.toString().lowercase())
 
         val sb = StringBuilder()
         for (mail in mails) {
@@ -592,11 +592,11 @@ object MailBBSManager : BaseBBSManager() {
                 if (mail.location != location)
                     continue
 
-                if (byTitle && mail.subject!!.toLowerCase().contains(search.toLowerCase()))
+                if (byTitle && mail.subject!!.lowercase().contains(search.lowercase()))
                     count++
                 else if (!byTitle) {
                     val writer = getPlayerName(mail.senderId)
-                    if (writer.toLowerCase().contains(search.toLowerCase()))
+                    if (writer.lowercase().contains(search.lowercase()))
                         count++
                 }
             }
@@ -652,7 +652,7 @@ object MailBBSManager : BaseBBSManager() {
         try {
             L2DatabaseFactory.connection.use { con ->
                 con.prepareStatement(SET_MAIL_LOC).use { ps ->
-                    ps.setString(1, location.toString().toLowerCase())
+                    ps.setString(1, location.toString().lowercase())
                     ps.setInt(2, mailId)
                     ps.execute()
                 }

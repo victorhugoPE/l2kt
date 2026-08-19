@@ -1109,16 +1109,14 @@ object GeoEngine {
         val gtz = getHeightNearest(gtx, gty, tz)
 
         // target coordinates reached
-        return if (gox == gtx && goy == gty && goz == gtz) Location(tx, ty, tz) else checkMove(
-            gox,
-            goy,
-            goz.toInt(),
-            gtx,
-            gty,
-            gtz.toInt()
-        )
+        if (gox == gtx && goy == gty)
+            return Location(tx, ty, tz)
 
-        // perform geodata check
+        // perform geodata check — returns GeoLocation with geo coords
+        val result = checkMove(gox, goy, goz.toInt(), gtx, gty, gtz.toInt())
+
+        // Convert to world coordinates explicitly (avoid GeoLocation x/y override issues)
+        return Location(getWorldX(result.geoX), getWorldY(result.geoY), result.z)
     }
 
     /**

@@ -67,8 +67,8 @@ class ValidatePosition : L2GameClientPacket() {
         } else if (diffSq < 360000)
         // if too large, messes observation
         {
-            if (diffSq > 250000 || Math.abs(dz) > 200) {
-                if (Math.abs(dz) in 201..1499 && Math.abs(_z - player.clientZ) < 800) {
+            if (diffSq > 250000 || Math.abs(dz) > 400) {
+                if (Math.abs(dz) in 401..1499 && Math.abs(_z - player.clientZ) < 800) {
                     player.setXYZ(realX, realY, _z)
                     realZ = _z
                 } else

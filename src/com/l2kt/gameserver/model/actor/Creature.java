@@ -2905,9 +2905,10 @@ public abstract class Creature extends WorldObject
 		double dz;
 		
 		final boolean isFloating = isFlying() || isInsideZone(ZoneId.WATER);
-		
-		// Z coordinate will follow geodata or client values once a second to reduce possible cpu load
-		if (!isFloating && !m.disregardingGeodata && Rnd.INSTANCE.get(10) == 0 && GeoEngine.INSTANCE.hasGeo(xPrev, yPrev))
+
+		// Z coordinate follows geodata — apply correction every ~500ms (every 5th tick)
+		// to balance between accuracy and performance/stability
+		if (!isFloating && !m.disregardingGeodata && (time - m._moveStartTime) % 500 < 100 && GeoEngine.INSTANCE.hasGeo(xPrev, yPrev))
 		{
 			short geoHeight = GeoEngine.INSTANCE.getHeight(xPrev, yPrev, zPrev);
 			dz = m._zDestination - geoHeight;

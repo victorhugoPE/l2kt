@@ -171,7 +171,8 @@ object GeoEngine {
             // direction has changed?
             if (dx != nx || dy != ny) {
                 // add node to the beginning of the list
-                list.addFirst(target.loc)
+                val targetLoc = target.loc
+                if (targetLoc != null) list.addFirst(targetLoc)
 
                 // update direction X/Y
                 dx = nx
@@ -350,7 +351,7 @@ object GeoEngine {
      * @return boolean : True, when geodata file was loaded without problem.
      */
     private fun loadGeoBlocks(regionX: Int, regionY: Int): Boolean {
-        val filename = String.format(GeoFormat.L2D.filename, regionX, regionY)
+        val filename = String.format(GeoFormat.L2OFF.filename, regionX, regionY)
         val filepath = Config.GEODATA_PATH + filename
 
         // standard load
@@ -361,6 +362,9 @@ object GeoEngine {
                     val buffer = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size()).load()
                     buffer.order(ByteOrder.LITTLE_ENDIAN)
 
+                    // L2OFF conv.dat has 18-byte header, skip it
+                    buffer.position(buffer.position() + 18)
+
                     // get block indexes
                     val blockX = (regionX - World.TILE_X_MIN) * GeoStructure.REGION_BLOCKS_X
                     val blockY = (regionY - World.TILE_Y_MIN) * GeoStructure.REGION_BLOCKS_Y
@@ -368,21 +372,19 @@ object GeoEngine {
                     // loop over region blocks
                     for (ix in 0 until GeoStructure.REGION_BLOCKS_X) {
                         for (iy in 0 until GeoStructure.REGION_BLOCKS_Y) {
-                            // get block type
-                            val type = buffer.get()
+                            // L2OFF uses Short for block type
+                            val type = buffer.short
 
                             // load block according to block type
                             when (type) {
-                                GeoStructure.TYPE_FLAT_L2D -> _blocks[blockX + ix][blockY + iy] =
-                                        BlockFlat(buffer, GeoFormat.L2D)
+                                GeoStructure.TYPE_FLAT_L2J_L2OFF.toShort() ->
+                                    _blocks[blockX + ix][blockY + iy] = BlockFlat(buffer, GeoFormat.L2OFF)
 
-                                GeoStructure.TYPE_COMPLEX_L2D -> _blocks[blockX + ix][blockY + iy] =
-                                        BlockComplex(buffer, GeoFormat.L2D)
+                                GeoStructure.TYPE_COMPLEX_L2OFF.toShort() ->
+                                    _blocks[blockX + ix][blockY + iy] = BlockComplex(buffer, GeoFormat.L2OFF)
 
-                                GeoStructure.TYPE_MULTILAYER_L2D -> _blocks[blockX + ix][blockY + iy] =
-                                        BlockMultilayer(buffer, GeoFormat.L2D)
-
-                                else -> throw IllegalArgumentException("Unknown block type: $type")
+                                else ->
+                                    _blocks[blockX + ix][blockY + iy] = BlockMultilayer(buffer, GeoFormat.L2OFF)
                             }
                         }
                     }

@@ -747,9 +747,9 @@ object GeoEngine {
         val dm = Math.max(dx, dy)
         val dz = (lostz - losoz) / dm
 
-        // get direction flag for diagonal movement
-        val diroxy = getDirXY(dirox, diroy)
-        val dirtxy = getDirXY(dirtx, dirty)
+        // get direction flag for diagonal movement (decomposed for L2OFF 4-bit NSWE)
+        val diroxy = dirox  // use X-cardinal for origin diagonal passability check
+        val dirtxy = dirtx  // use X-cardinal for target diagonal passability check
 
         // delta, determines axis to move on (+..X axis, -..Y axis)
         var d = dx - dy
@@ -921,9 +921,9 @@ object GeoEngine {
         val dm = Math.max(dx, dy)
         val dz = (lostz - losoz) / dm
 
-        // get direction flag for diagonal movement
-        val diroxy = getDirXY(dirox, diroy)
-        val dirtxy = getDirXY(dirtx, dirty)
+        // get direction flag for diagonal movement (decomposed for L2OFF 4-bit NSWE)
+        val diroxy = dirox  // use X-cardinal for origin diagonal passability check
+        val dirtxy = dirtx  // use X-cardinal for target diagonal passability check
 
         // delta, determines axis to move on (+..X axis, -..Y axis)
         var d = dx - dy
@@ -1154,14 +1154,8 @@ object GeoEngine {
         val sy = if (goy < gty) 1 else -1
         val dirY = if (sy > 0) GeoStructure.CELL_FLAG_S else GeoStructure.CELL_FLAG_N
 
-        // get direction flag for diagonal movement
-        val dirXY = getDirXY(dirX, dirY)
-
         // delta, determines axis to move on (+..X axis, -..Y axis)
         var d = dx - dy
-
-        // NSWE direction of movement
-        var direction: Byte
 
         // load pointer coordinates
         var gpx = gox
@@ -1174,29 +1168,40 @@ object GeoEngine {
 
         // loop
         do {
-            direction = 0
-
             // calculate next point coordinates
             val e2 = 2 * d
             if (e2 > -dy && e2 < dx) {
-                d -= dy
-                d += dx
-                nx += sx
-                ny += sy
-                direction = (direction.toInt() or dirXY.toInt()).toByte()
-            } else if (e2 > -dy) {
-                d -= dy
-                nx += sx
-                direction = (direction.toInt() or dirX.toInt()).toByte()
-            } else if (e2 < dx) {
-                d += dx
-                ny += sy
-                direction = (direction.toInt() or dirY.toInt()).toByte()
-            }
+                // Diagonal movement: decompose into two cardinal checks (L2OFF compatible)
+                // Step 1: check if we can move in X direction from current cell
+                val nsweHere = getNsweNearest(gpx, gpy, gpz)
+                if ((nsweHere.toInt() and dirX.toInt()) == 0)
+                    return GeoLocation(gpx, gpy, gpz)
 
-            // obstacle found, return
-            if ((getNsweNearest(gpx, gpy, gpz).toInt() and direction.toInt()) == 0)
-                return GeoLocation(gpx, gpy, gpz)
+                // Step 2: check if we can move in Y direction from the X-neighbor cell
+                val midZ = getHeightNearest(gpx + sx, gpy, gpz).toInt()
+                val nsweMiddle = getNsweNearest(gpx + sx, gpy, midZ)
+                if ((nsweMiddle.toInt() and dirY.toInt()) == 0)
+                    return GeoLocation(gpx, gpy, gpz)
+
+                d -= dy
+                d += dx
+                nx += sx
+                ny += sy
+            } else if (e2 > -dy) {
+                // Cardinal X movement
+                if ((getNsweNearest(gpx, gpy, gpz).toInt() and dirX.toInt()) == 0)
+                    return GeoLocation(gpx, gpy, gpz)
+
+                d -= dy
+                nx += sx
+            } else if (e2 < dx) {
+                // Cardinal Y movement
+                if ((getNsweNearest(gpx, gpy, gpz).toInt() and dirY.toInt()) == 0)
+                    return GeoLocation(gpx, gpy, gpz)
+
+                d += dx
+                ny += sy
+            }
 
             // update pointer coordinates
             gpx = nx

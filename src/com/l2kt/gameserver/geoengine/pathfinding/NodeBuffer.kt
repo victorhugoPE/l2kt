@@ -151,20 +151,24 @@ class NodeBuffer
         if ((nswe.toInt() and GeoStructure.CELL_FLAG_E.toInt()) != 0)
             addNode(x + 1, y, z, Config.BASE_WEIGHT)
 
-        // can move north-west, expand
-        if ((nswe.toInt() and GeoStructure.CELL_FLAG_NW.toInt()) != 0)
+        // can move north-west (L2OFF: corner validation using cardinal flags of neighbors)
+        if ((nswe.toInt() and GeoStructure.CELL_FLAG_N.toInt()) != 0 &&
+            (nswe.toInt() and GeoStructure.CELL_FLAG_W.toInt()) != 0)
             addNode(x - 1, y - 1, z, Config.DIAGONAL_WEIGHT)
 
-        // can move north-east, expand
-        if ((nswe.toInt() and GeoStructure.CELL_FLAG_NE.toInt()) != 0)
+        // can move north-east
+        if ((nswe.toInt() and GeoStructure.CELL_FLAG_N.toInt()) != 0 &&
+            (nswe.toInt() and GeoStructure.CELL_FLAG_E.toInt()) != 0)
             addNode(x + 1, y - 1, z, Config.DIAGONAL_WEIGHT)
 
-        // can move south-west, expand
-        if ((nswe.toInt() and GeoStructure.CELL_FLAG_SW.toInt()) != 0)
+        // can move south-west
+        if ((nswe.toInt() and GeoStructure.CELL_FLAG_S.toInt()) != 0 &&
+            (nswe.toInt() and GeoStructure.CELL_FLAG_W.toInt()) != 0)
             addNode(x - 1, y + 1, z, Config.DIAGONAL_WEIGHT)
 
-        // can move south-east, expand
-        if ((nswe.toInt() and GeoStructure.CELL_FLAG_SE.toInt()) != 0)
+        // can move south-east
+        if ((nswe.toInt() and GeoStructure.CELL_FLAG_S.toInt()) != 0 &&
+            (nswe.toInt() and GeoStructure.CELL_FLAG_E.toInt()) != 0)
             addNode(x + 1, y + 1, z, Config.DIAGONAL_WEIGHT)
     }
 

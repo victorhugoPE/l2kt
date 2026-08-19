@@ -98,20 +98,15 @@ val copyConfigLogin by tasks.registering(Copy::class) {
         include("banned_ips.properties")
         include("logging.properties")
         include("loginserver.properties")
+        include("hexid.txt")
     }
     into(distLogin.map { it.dir("config") })
 }
 
 val copyConfigGame by tasks.registering(Copy::class) {
     from("config") {
-        include("server.properties")
-        include("clans.properties")
-        include("events.properties")
-        include("geoengine.properties")
-        include("npcs.properties")
-        include("players.properties")
-        include("siege.properties")
-        include("logging.properties")
+        include("*.properties")
+        include("*.txt")
     }
     into(distGame.map { it.dir("config") })
 }
